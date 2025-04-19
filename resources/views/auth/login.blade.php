@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Aktiviti Pelajar</title>
+    <title>Login - Student Activity Managemnet System</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+            background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
                 url('/api/placeholder/1200/800');
             background-size: cover;
             background-position: center;
         }
 
         .container {
+            background-color: white;
             width: 100%;
             max-width: 500px;
             padding: 40px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -40,15 +43,22 @@
             color: white;
             font-weight: bold;
             font-size: 24px;
+            letter-spacing: 1px;
         }
 
         h1 {
             color: #022954;
-            font-size: 20px;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: 'Georgia', serif;
+        }
+
+        .subheading {
+            font-size: 15px;
+            color: #555;
             margin-bottom: 30px;
-            text-align: center;
-            font-weight: 600;
-            line-height: 1.4;
         }
 
         .form-group {
@@ -60,16 +70,17 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #555;
+            color: #333;
         }
 
         input[type="email"],
         input[type="password"] {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             font-size: 16px;
+            background-color: #fdfdfd;
             transition: border-color 0.3s;
         }
 
@@ -85,21 +96,17 @@
             margin-top: 5px;
         }
 
-        .form-check {
-            margin-bottom: 20px;
-        }
-
         .btn-primary {
             background-color: #022954;
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 4px;
+            padding: 12px;
+            border-radius: 5px;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: 500;
             width: 100%;
+            transition: background-color 0.3s;
         }
 
         .btn-primary:hover {
@@ -114,6 +121,10 @@
             display: inline-block;
         }
 
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
         .copyright {
             margin-top: 30px;
             font-size: 12px;
@@ -125,15 +136,16 @@
 <body>
     <div class="container">
         <div class="logo">FKP</div>
-        <h1>SISTEM AKTIVITI PELAJAR<br>FAKULTI KEUSAHAWANAN DAN PERNIAGAAN</h1>
+        <h1>Student Activity Management System</h1>
+        <div class="subheading">Faculty of Entrepreneurship and Business</div>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="form-group">
-                <label for="email">Alamat E-mel</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                <label for="email">Email Address</label>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -142,9 +154,10 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Kata Laluan</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                <label for="password">Password</label>
+                <input id="password" type="password"
+                    class="form-control @error('password') is-invalid @enderror" name="password" required
+                    autocomplete="current-password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -152,33 +165,21 @@
                 @enderror
             </div>
 
-            <!-- <div class="form-group">
-                    <div class="d-flex align-items-center">
-                        <input class="form-check-input me-2" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="form-check-label" for="remember">
-                            Ingat Saya
-                        </label>
-                    </div>
-                </div> -->
+            <button type="submit" class="btn-primary">
+                Login
+            </button>
 
-
-            <div class="text-align-center">
-
-                <button type="submit" class="btn-primary">
-                    Log Masuk
-                </button>
-            </div>
             @if (Route::has('password.request'))
             <div>
                 <a class="btn-link" href="{{ route('password.request') }}">
-                    Lupa Kata Laluan?
+                    Forgot Password?
                 </a>
             </div>
             @endif
         </form>
 
-        <div class="copyright text-align-center">
-            © 2025 Fakulti Keusahawanan dan Perniagaan. Hak Cipta Terpelihara.
+        <div class="copyright">
+            © 2025 Faculty of Entrepreneurship and Business, University. All rights reserved.
         </div>
     </div>
 </body>

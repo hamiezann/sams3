@@ -26,6 +26,7 @@ class User extends Authenticatable
         'google_token',
         'google_refresh_token',
         'google_token_expires_at',
+        'last_login'
 
 
     ];

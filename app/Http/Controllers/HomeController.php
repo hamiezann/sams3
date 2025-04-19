@@ -26,7 +26,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('student.home');
+
+        $totalActivities = Activity::count();
+        // $completedActivities = Activity::where('is_ended', true)->count();
+        $last_login = auth()->user()->last_login;
+        // dd($last_login);
+        $completedActivities = Activity::whereHas('users', function ($query) {
+            $query->where('status', 'completed');
+        })->count();
+
+        $upcomingActivities = Activity::where('start_date', '>=', now())
+            ->orderBy('start_date')
+            ->take(5)
+            ->get();
+
+        return view('student.home', compact('totalActivities', 'completedActivities', 'upcomingActivities', 'last_login'));
     }
 
     public function adminHome(): View

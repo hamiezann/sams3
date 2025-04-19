@@ -34,6 +34,75 @@
         max-width: 200px;
         height: auto;
     }
+
+    .action-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 140px;
+        height: 48px;
+        padding: 0 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-align: center;
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    .action-button:focus {
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        outline: none;
+    }
+
+    .action-button:active {
+        transform: translateY(1px);
+    }
+
+    .warning-action {
+        background-color: #fff;
+        color: #d97706;
+        border-color: #d97706;
+    }
+
+    .warning-action:hover {
+        background-color: #d97706;
+        color: #fff;
+    }
+
+    .neutral-action {
+        background-color: #fff;
+        color: #6b7280;
+        border-color: #6b7280;
+    }
+
+    .neutral-action:hover {
+        background-color: #6b7280;
+        color: #fff;
+    }
+
+    .primary-action {
+        background-color: #fff;
+        color: #2563eb;
+        border-color: #2563eb;
+    }
+
+    .primary-action:hover {
+        background-color: #2563eb;
+        color: #fff;
+    }
+
+    .danger-action {
+        background-color: #fff;
+        color: #dc2626;
+        border-color: #dc2626;
+    }
+
+    .danger-action:hover {
+        background-color: #dc2626;
+        color: #fff;
+    }
 </style>
 
 <div class="container py-4">
@@ -164,28 +233,35 @@
     </div>
 
 
-    <div class="d-flex justify-content-center align-items-center mt-4 flex-wrap gap-2">
-
+    <div class="d-flex justify-content-center align-items-center mt-4 flex-wrap gap-3">
         {{-- Left Section: End Activity --}}
         @if(!$activity->is_ended)
         <form action="{{ route('activities.end', $activity->id) }}" method="POST"
             onsubmit="return confirm('Mark this activity as ended?')" class="d-inline">
             @csrf
-            <button type="submit" class="btn btn-outline-warning btn-lg px-4">End Activity</button>
+            <button type="submit" class="action-button warning-action">
+                <i class="fas fa-flag-checkered me-2"></i>End Activity
+            </button>
         </form>
         @endif
 
         {{-- Right Section: Back / Edit / Delete --}}
-        <div class="d-flex gap-2 flex-wrap justify-content-end">
-            <a href="{{ route('activities.index') }}" class="btn btn-outline-secondary btn-lg px-4">Back</a>
+        <div class="d-flex gap-3 flex-wrap justify-content-end">
+            <a href="{{ route('activities.index') }}" class="action-button neutral-action">
+                <i class="fas fa-arrow-left me-2"></i>Back
+            </a>
 
-            <a href="{{ route('activities.edit', $activity->id) }}" class="btn btn-outline-primary btn-lg px-4">Edit</a>
+            <a href="{{ route('activities.edit', $activity->id) }}" class="action-button primary-action">
+                <i class="fas fa-edit me-2"></i>Edit
+            </a>
 
             <form action="{{ route('activities.destroy', $activity->id) }}" method="POST"
-                class="d-inline" onsubmit="return confirm('Delete this activity?')">
+                class="d-inline" onsubmit="return confirm('Are you sure you want to delete this activity? This action cannot be undone.')">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-outline-danger btn-lg px-4">Delete</button>
+                <button class="action-button danger-action">
+                    <i class="fas fa-trash-alt me-2"></i>Delete
+                </button>
             </form>
         </div>
     </div>

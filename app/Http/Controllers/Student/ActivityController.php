@@ -85,12 +85,12 @@ class ActivityController extends Controller
         $user = auth()->user();
 
         // Optional: check if user has synced too many times overall
-        $totalSyncs = ActivityApplication::where('user_id', $user->id)
-            ->sum('calendar_synced');
+        // $totalSyncs = ActivityApplication::where('user_id', $user->id)
+        //     ->sum('calendar_synced');
 
-        if ($totalSyncs >= 3) {
-            return back()->with('error', 'You have reached the maximum number of syncs.');
-        }
+        // if ($totalSyncs >= 3) {
+        //     return back()->with('error', 'You have reached the maximum number of syncs.');
+        // }
 
         if (!$user->google_token) {
             return redirect()->route('connect.google')->with('error', 'Please connect your Google Calendar first.');

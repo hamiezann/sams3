@@ -28,7 +28,7 @@
             --light-gray: #f6f9fc;
             --medium-gray: #e6edf5;
             --text-light: #fff;
-            --text-muted: #d0d6e2;
+            --text-muted: rgb(183, 203, 244);
         }
 
         body {
@@ -150,6 +150,7 @@
             }
         }
     </style>
+
 </head>
 
 <body>
@@ -230,7 +231,7 @@
                             </div>
                             <div>
                                 <div>{{ Auth::user()->name }}</div>
-                                <small class="text-muted">{{ Auth::user()->type === 'admin' ? 'Administrator' : 'Student' }}</small>
+                                <small class="text-muted" style="color:rgb(82, 216, 226) !important;">{{ Auth::user()->type === 'admin' ? 'Administrator' : 'Student' }}</small>
                             </div>
                         </div>
                         <li class="nav-item">

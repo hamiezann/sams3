@@ -213,6 +213,46 @@
         margin-bottom: 1rem;
         color: #ccc;
     }
+
+    @media (max-width: 768px) {
+        .custom-table thead {
+            display: none;
+        }
+
+        .custom-table,
+        .custom-table tbody,
+        .custom-table tr,
+        .custom-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .custom-table tr {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 0.5rem;
+            background-color: #fff;
+            padding: 1rem;
+        }
+
+        .custom-table td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+
+        .custom-table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: #6c757d;
+            text-align: left;
+        }
+    }
 </style>
 
 <div class="container py-4">
@@ -270,7 +310,8 @@
                     </div>
                     @else
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
+                        <!-- <table class="table table-bordered table-striped"> -->
+                        <table class="table custom-table table-hover align-middle">
                             <thead>
                                 <tr>
                                     <th width="5%">ID</th>

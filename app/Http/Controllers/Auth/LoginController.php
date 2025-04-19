@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Carbon;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,7 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            auth()->user()->update(['last_login' => Carbon::now()]);
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
             } else {
