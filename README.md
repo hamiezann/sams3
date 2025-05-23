@@ -6,35 +6,53 @@ A modern web-based platform to manage university student activities, streamline 
 
 ## ✨ Features
 
-- 🧾 **Event Creation & Management** – Admins can create, update, and publish student events
-- 📅 **Student Registration** – Students can apply and track their event applications
-- ✅ **Role-Based Access** – Separate dashboards and features for admins and students
-- 🔍 **QR Code Attendance** – Uploadable QR codes for easy attendance verification
-- 📊 **Activity Status Tracking** – Automatic flagging of ended or completed activities
-- 📆 **Google Calendar Integration** – Approved events sync to student calendars
+-   🧾 **Event Creation & Management** – Admins can create, update, and publish student events
+-   📅 **Student Registration** – Students can apply and track their event applications
+-   ✅ **Role-Based Access** – Separate dashboards and features for admins and students
+-   🔍 **QR Code Attendance** – Uploadable QR codes for easy attendance verification
+-   📊 **Activity Status Tracking** – Automatic flagging of ended or completed activities
+-   📆 **Google Calendar Integration** – Approved events sync to student calendars
 
 ---
 
 ## 💻 Tech Stack
 
-| Tech            | Description                          |
-|-----------------|--------------------------------------|
-| Laravel         | Backend framework                    |
-| Blade / HTML/CSS| Frontend templating and UI styling   |
-| MySQL           | Database for storing user data       |
-| JavaScript      | Dynamic interactivity (QR/filters)   |
-| Argon Dashboard | Admin UI template (Bootstrap-based)  |
+| Tech             | Description                         |
+| ---------------- | ----------------------------------- |
+| Laravel          | Backend framework                   |
+| Blade / HTML/CSS | Frontend templating and UI styling  |
+| MySQL            | Database for storing user data      |
+| JavaScript       | Dynamic interactivity (QR/filters)  |
+| Argon Dashboard  | Admin UI template (Bootstrap-based) |
 
 ---
 
 ## 🧑‍💻 Roles & Access
 
-| Role    | Capabilities                                                                 |
-|---------|-------------------------------------------------------------------------------|
-| Admin   | Manage activities, approve/reject applications, upload QR codes, view stats  |
-| Student | Apply for events, view history, scan QR, sync to Google Calendar             |
+| Role    | Capabilities                                                                |
+| ------- | --------------------------------------------------------------------------- |
+| Admin   | Manage activities, approve/reject applications, upload QR codes, view stats |
+| Student | Apply for events, view history, scan QR, sync to Google Calendar            |
 
 ---
+
+## 📸 Screenshots
+
+![Login](screenshots/admin/login.png)
+
+### 🖥️ Admin Dashboard
+
+![Admin Dashboard](screenshots/admin/admin%20dashboard.png)
+![Activty List](screenshots/admin/activity%20management.png)
+![Student List](screenshots/admin/student%20list.png)
+![Activity Detail](screenshots/admin/activity%20detail.png)
+
+### 🎓 Student Activity View
+
+![Student View](screenshots/student/student%20dashboard.png)
+![Activity List](screenshots/student/activity%20list.png)
+![My Activity](screenshots/student/my%20activity.png)
+![Activity Detail](screenshots/student/activity%20detail.png)
 
 ## 🚀 How to Run Locally
 
@@ -58,3 +76,4 @@ php artisan migrate
 
 # Start the server
 php artisan serve
+```
