@@ -29,6 +29,8 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             text-align: center;
+            justify-content: center;
+            /* display: flex; */
         }
 
         .logo {
@@ -165,7 +167,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn-primary">
+            <button type="submit" class="btn-primary" style="text-align: center; justify-content:center;display:flex;">
                 Login
             </button>
 

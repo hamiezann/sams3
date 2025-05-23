@@ -26,22 +26,37 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        // Get total number of activities (0 if none)
         $totalActivities = Activity::count();
-        // $completedActivities = Activity::where('is_ended', true)->count();
+
+        // Get last login time of current user
         $last_login = auth()->user()->last_login;
-        // dd($last_login);
-        $completedActivities = Activity::whereHas('users', function ($query) {
-            $query->where('status', 'completed');
-        })->count();
 
-        $upcomingActivities = Activity::where('start_date', '>=', now())
-            ->orderBy('start_date')
-            ->take(5)
-            ->get();
+        // Get completed activities only if activities exist
+        $completedActivities = 0;
+        if ($totalActivities > 0) {
+            $completedActivities = Activity::whereHas('users', function ($query) {
+                $query->where('status', 'completed');
+            })->count();
+        }
 
-        return view('student.home', compact('totalActivities', 'completedActivities', 'upcomingActivities', 'last_login'));
+        // Get upcoming activities if there are any
+        $upcomingActivities = collect(); // empty collection by default
+        if ($totalActivities > 0) {
+            $upcomingActivities = Activity::where('start_date', '>=', now())
+                ->orderBy('start_date')
+                ->take(5)
+                ->get();
+        }
+
+        return view('student.home', compact(
+            'totalActivities',
+            'completedActivities',
+            'upcomingActivities',
+            'last_login'
+        ));
     }
+
 
     public function adminHome(): View
 
